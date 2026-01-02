@@ -1,3 +1,7 @@
+//write a program to create linked list dynamically and traverse it
+//TC = O(n)
+//SC = o(1) since this is constant space traversal we only used an extra pointer variable
+//which is independent of input size(only created once )
 #include <iostream>
 using namespace std;
 
@@ -26,7 +30,7 @@ int main() {
     //d->next = NULL by default due to constructor
 
     //traversing the linked list
-    Node * temp = a;
+    Node * temp = a;//temp is pointer to Node object(4 bits or 8 bits in size)
     while(temp != NULL){
         cout<<temp->val<<" ";
         temp = temp->next;
