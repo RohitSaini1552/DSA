@@ -36,4 +36,6 @@ int main() {
         temp = temp->next;
     }
 
+    cout<<a->next->next->next->val;//prints the value of d node via pointers
+
 }
