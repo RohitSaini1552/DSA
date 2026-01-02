@@ -24,7 +24,7 @@ int main() {
     c.next = &d;
 
     // Pointer traversal
-    Node* temp = &a;
+    Node* temp = &a;//this temp is not a node.....it is a pointer to a node type
 
     do {
         cout << temp->val << " ";
