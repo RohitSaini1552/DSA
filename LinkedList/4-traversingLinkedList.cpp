@@ -24,7 +24,7 @@ int main(){
     // cout<<d.val<<endl;
     
 
-    Node temp = a;
+    Node temp = a;//This takes extra space of 1 node temp
     while(true){
         cout<<temp.val<<" ";
         if(temp.next==NULL) break;
