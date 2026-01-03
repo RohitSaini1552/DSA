@@ -15,6 +15,8 @@ public:
 //to display the linked list in correct order iteratively using pointer to node
 void display(Node* head){
     Node* temp = head;
+    //we can do this without temp also.....simply head->val and replace temp by head everywhere
+    //it wont lost the head of te linkedlst because display(a) a is a pointer and is passed by value in display function
     while(temp != NULL){
         cout<<temp->val<<" ";
         temp = temp->next;
