@@ -10,6 +10,8 @@
 class Solution {
 public:
     Node* deleteMid(Node* head) {
+
+        //using 3 pointers approach
         if (head == NULL || head->next == NULL)
             return NULL;
 
