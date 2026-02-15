@@ -1,4 +1,4 @@
-//to remove elements of even index in a queue(assume 0 based index)
+//program to remove elements of even index in a queue(assume 0 based index)
 
 
 #include <iostream>
