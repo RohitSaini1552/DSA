@@ -1,6 +1,7 @@
 //Write code for the conventional Selection sort to print array in reverse sorted manner:
 #include<iostream>
 #include<climits>
+#include<vector>
 using namespace std;
 int main(){
     int arr[6] = {21,3,-1,6,154,4};
@@ -19,4 +20,5 @@ int main(){
     for(int i=0;i<n;i++){
         cout<<arr[i]<<" ";
     }
+    
 }
