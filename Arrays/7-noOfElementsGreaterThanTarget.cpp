@@ -16,11 +16,11 @@ void output(int a[], int n){
     cout<<endl;
 }
 int countGreater(int a[], int n, int x){
-    int count = 0;
+    int ans = 0;
     for(int i=0;i<n;i++){
-        if(a[i] > x) count++;
+        if(a[i] > x) ans++;
     }
-    return count;
+    return ans;
 }
 int main(){
     int n,x;
