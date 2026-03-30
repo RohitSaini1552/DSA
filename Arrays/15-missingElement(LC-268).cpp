@@ -20,10 +20,10 @@ public:
         return missing; */
 
         //M2 : using simple logic of sum of first n natural numbers
-        int n = nums.size();
+        int m = nums.size();
         int sum = 0;
-        int total = n * (n + 1) / 2;
-        for(int i=0;i<n;i++){
+        int total = m * (m + 1) / 2;
+        for(int i=0;i<m;i++){
             sum += nums[i];
         }
         return total - sum;
