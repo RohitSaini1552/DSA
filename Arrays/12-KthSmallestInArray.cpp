@@ -17,13 +17,6 @@ void output(vector<int>a, int n){
     } 
     cout<<endl;
 }
-int Max(vector<int>a, int n){
-    int maxElement = INT_MIN;
-    for(int i=0;i<n;i++){
-        ((maxElement < a[i])? maxElement = a[i] : maxElement);
-    }
-    return maxElement;
-}
 int main(){
     int n;
     cout<<"Enter the size of the array : ";
@@ -33,6 +26,7 @@ int main(){
     input(a,n);
     cout<<"The elements of array are : ";
     output(a,n);
+    // in place sorting of a vector
     sort(a.begin(), a.end());
     int k;
     cout<<"Enter the Kth smallest : ";
