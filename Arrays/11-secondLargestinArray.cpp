@@ -1,4 +1,4 @@
-//write a code to return maximum of all the elements of an array 
+//write a code to return second maximum of all the elements of an array 
 
 #include<iostream>
 #include<climits>
@@ -22,6 +22,14 @@ int Max(int a[], int n){
     }
     return maxElement;
 }
+int secondMax(int a[], int n){
+    int secondMax = INT_MIN;
+    int max = Max(a,n);
+    for(int i=0;i<n;i++){
+        if(a[i] != max && secondMax < a[i]) secondMax = a[i];
+    }
+    return secondMax;
+}
 int main(){
     int n;
     cout<<"Enter the size of the array : ";
@@ -32,7 +40,7 @@ int main(){
     cout<<"The elements of array are : ";
     output(a,n);
     int max = Max(a,n);
-    cout<<"Maximum element in the given array is : "<<max;
-    int secondMax = INT_MAX;
+    cout<<"Maximum element in the given array is : "<<max<<endl;
+    cout<<"Second Max of the given array is : "<<secondMax(a,n);
     
 }
