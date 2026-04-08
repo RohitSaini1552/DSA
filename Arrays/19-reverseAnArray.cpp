@@ -31,9 +31,11 @@ int main(){
     int l = 0;
     int r = a.size() - 1;
     while(l < r){
-        swap(a[l], a[r]);
-        l++;
-        r--;
+       int temp = a[l];
+       a[l] = a[r];
+       a[r] = temp;
+       l++;
+       r--;
     }
     cout<<"reversed order : ";
     output(a,n);
