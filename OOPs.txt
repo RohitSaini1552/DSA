@@ -1,0 +1,89 @@
+An abstract class is a class that cannot be instantiated (you cannot create its object) and is meant to act as a base class.
+
+👉 It is used when you want to define a common structure but force derived classes to implement specific behavior.
+
+✔ Key Point:
+
+A class becomes abstract if it has at least one pure virtual function.
+🔷 What is a Pure Virtual Function?
+
+A pure virtual function is a function that:
+
+Has no implementation in the base class
+Must be overridden in derived class
+Syntax:
+virtual void draw() = 0;
+
+👉 The = 0 means:
+
+“I am not providing implementation”
+“Child class MUST implement this”
+
+✅ 1. Cannot create object of abstract class
+Shape s; // ❌
+✅ 2. Pointer and refrence variables of abstract class is allowed
+Shape* s;
+
+✔ Used for runtime polymorphism
+
+✅ 3. Derived class MUST override all pure virtual functions
+
+If not:
+
+class Circle : public Shape {
+    // no draw()
+};
+
+👉 Then Circle also becomes abstract
+
+✅ 4. Abstract class CAN have:
+Normal functions
+Constructors
+Data members
+✅ 5. Pure virtual function CAN have definition (advanced)
+void Shape::draw() {
+    cout << "Base draw";
+}
+
+But still:
+
+virtual void draw() = 0;
+    #include <iostream>
+    using namespace std;
+
+    class Shape {
+    public:
+        virtual void draw() = 0;  // pure virtual
+    };
+
+    void Shape::draw() {
+        cout << "Drawing base shape\n";
+    }
+
+    class Circle : public Shape {
+    public:
+        void draw() {
+            cout << "Circle draw start\n";
+
+            Shape::draw();  // calling base version
+
+            cout << "Circle draw end\n";
+        }
+    };
+
+    int main() {
+        Circle c;
+        c.draw();
+    }
+    Output
+    Circle draw start
+    Drawing base shape
+    Circle draw end
+
+🔷 Why do we use Abstract Classes?
+
+👉 To achieve:
+
+Abstraction
+Runtime polymorphism
+Design enforce rules
