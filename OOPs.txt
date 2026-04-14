@@ -87,3 +87,238 @@ virtual void draw() = 0;
 Abstraction
 Runtime polymorphism
 Design enforce rules
+
+Inheritance
+
+⚠️ TRAPS in Inheritance (PLACEMENT GOLD ⚡)
+
+These are exactly what companies ask.
+
+🔴 Trap 1: Private Members Not Accessible
+class A {
+private:
+    int x = 10;
+};
+
+class B : public A {
+public:
+    void show() {
+        cout << x; // ❌ ERROR
+    }
+};
+
+✔ Fix: use protected or getter
+
+🔴 Trap 2: Constructor is NOT Inherited
+class A {
+public:
+    A(int x) {}
+};
+
+class B : public A {
+};
+
+👉 This will cause error
+
+✔ Fix:
+
+class B : public A {
+public:
+    B() : A(10) {}
+};
+🔴 Trap 3: Function Hiding (VERY COMMON)
+class A {
+public:
+    void show() { cout << "A"; }
+};
+
+class B : public A {
+public:
+    void show(int x) { cout << "B"; }
+};
+B obj;
+obj.show(); // ❌ ERROR
+
+👉 Why?
+Because B::show(int) hides A::show()
+
+✔ Fix:
+
+using A::show;
+🔴 Trap 4: Base Pointer Behavior
+class A {
+public:
+    void show() { cout << "A"; }
+};
+
+class B : public A {
+public:
+    void show() { cout << "B"; }
+};
+
+A* ptr = new B();
+ptr->show();
+
+👉 Output: A
+
+✔ Why?
+Because function is not virtual
+
+🔴 Trap 5: Virtual Function Fix
+class A {
+public:
+    virtual void show() { cout << "A"; }
+};
+
+👉 Now output becomes: B
+
+✔ This is runtime polymorphism
+
+🔴 Trap 6: Object Slicing (VERY IMPORTANT ⭐)
+class A {
+public:
+    int x = 10;
+};
+
+class B : public A {
+public:
+    int y = 20;
+};
+
+B obj;
+A a = obj; // slicing
+
+👉 y is LOST
+
+✔ Only base part copied
+
+🔴 Trap 7: Diamond Problem (Multiple Inheritance)
+class A {
+public:
+    int x;
+};
+
+class B : public A {};
+class C : public A {};
+
+class D : public B, public C {
+};
+
+👉 D has 2 copies of A
+
+✔ Problem:
+
+D obj;
+obj.x; // ❌ ambiguous
+✔ Fix: Virtual Inheritance
+class B : virtual public A {};
+class C : virtual public A {};
+🔴 Trap 8: Order of Constructor Calls
+class A {
+public:
+    A() { cout << "A"; }
+};
+
+class B : public A {
+public:
+    B() { cout << "B"; }
+};
+B obj;
+
+👉 Output:
+
+A B
+
+✔ Base class constructor runs FIRST
+
+🔴 Trap 9: Destructor Order
+
+👉 Reverse order:
+
+B destructor
+A destructor
+🔴 Trap 10: Overriding vs Overloading
+
+👉 Confusion area
+
+Concept	Meaning
+Overloading	Same function name, different parameters
+Overriding	Redefining base class virtual function
+🔥 Placement-Level MCQs
+❓ Q1
+class A {
+public:
+    void show() { cout << "A"; }
+};
+
+class B : public A {};
+
+B obj;
+obj.show();
+
+👉 Output?
+
+A) A
+B) B
+C) Error
+D) Garbage
+
+✔ Answer: A
+
+❓ Q2
+class A {
+public:
+    virtual void show() { cout << "A"; }
+};
+
+class B : public A {
+public:
+    void show() { cout << "B"; }
+};
+
+A* ptr = new B();
+ptr->show();
+
+👉 Output?
+
+✔ Answer: B
+
+❓ Q3
+
+Which is TRUE?
+
+A) Constructors are inherited
+B) Private members are inherited
+C) Destructor is called first
+D) Base constructor runs first
+
+✔ Answer: D
+
+❓ Q4 (Tricky ⭐)
+class A {
+public:
+    void show() {}
+};
+
+class B : public A {
+public:
+    void show(int x) {}
+};
+
+B obj;
+obj.show();
+
+👉 Output?
+
+✔ Answer: Compilation Error
+
+❓ Q5
+
+What is object slicing?
+
+A) Memory leak
+B) Copying only base part
+C) Virtual function call
+D) Destructor call
+
+✔ Answer: B
