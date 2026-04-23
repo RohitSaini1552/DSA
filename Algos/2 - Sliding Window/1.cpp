@@ -8,8 +8,8 @@ int main(){
     for(int i=0;i<k;i++){
         prevSum += v[i];
     }
-    int maxSum = INT_MIN;
-    int maxIdx = -1;
+    int maxSum = prevSum;
+    int maxIdx = 0;
     for(int i=1;i<=n-k;i++){
         int currSum = prevSum + v[i+k-1] - v[i-1];
         if(currSum > maxSum){
