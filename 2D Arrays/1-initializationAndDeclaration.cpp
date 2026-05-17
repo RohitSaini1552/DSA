@@ -1,3 +1,5 @@
+//Write a code to declare and initialise a 2D array
+
 #include<iostream>
 using namespace std;
 int main(){
