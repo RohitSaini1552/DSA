@@ -1,4 +1,4 @@
-//function callin itself
+//function calling itself
 
 #include<iostream>
 using namespace std;
