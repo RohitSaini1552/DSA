@@ -1,5 +1,6 @@
-/*This code is used to print the total possible paths in a n*n grid maze 
-where only Right and down moves are allowed.also prints all the path*/
+/* Write a code to calculate the total possible paths in a m*n grid maze 
+where only Right and down moves are allowed.
+also prints all the path*/
 
 #include<iostream>
 using namespace std;
@@ -20,7 +21,14 @@ void printPath(int er,int ec,int sr,int sc,string p){
     printPath(er,ec,sr+1,sc,p+'D');
 
 }
+void printPath2(int er,int ec,string s){
+    if(er < 1 || ec < 1) return;
+    if(er == 1 && ec == 1) cout<<s<<endl;
+    printPath2(er-1,ec,s+'R');
+    printPath2(er,ec-1,s+'D');
+}
 int main(){
-    cout<<maze(2,2,0,0)<<endl;
-    printPath(2,2,0,0,"");
+    cout<<maze(2,2,1,1)<<endl;
+    // printPath(2,2,0,0,"");
+    printPath2(2,2,"");
 }
