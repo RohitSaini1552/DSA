@@ -22,10 +22,11 @@ int gcd(int a,int b,int i){
         if(a % b == 0) return b;
         else return(b,a % b);
     }
-    else{
+    /* else{
         if(b % a == 0) return a;
         else return(a,b % a);
-    }
+    } */
+   else return hcf(b,a);
     return 1;
  }
 
