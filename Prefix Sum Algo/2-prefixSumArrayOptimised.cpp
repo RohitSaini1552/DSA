@@ -1,3 +1,6 @@
+// Write a code to calculate running sum of an array using prefix sum algorithm optimised
+
+
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
