@@ -27,5 +27,16 @@ int main(){
     vector<int> dp1(n+1,-1);
     vector<int> dp2(n+1,-1);
     vector<int> dp3(n+1,-1);
-    cout<<f1(n,dp1)<<" "<<f2(n,dp2);
+    dp3[0] = 1;
+    dp3[1] = 1;
+    int ans = 0;
+    for(int i=2;i<=n;i++){
+        int ans = 0;
+        for(int j=1;j<=6;j++){
+            if(i - j < 0) break;
+            ans += dp3[i-j];
+        }
+        dp3[i] = ans;
+    }
+    cout<<f1(n,dp1)<<" "<<f2(n,dp2)<<" "<<dp3[n];
 }
