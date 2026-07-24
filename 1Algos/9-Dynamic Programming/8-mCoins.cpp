@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+/* #include<bits/stdc++.h>
 using namespace std;
 
 // Changed parameter to vector<int>& to avoid type mismatch with -1
@@ -38,5 +38,43 @@ int main(){
         else s += 'B';
     }
     cout<<s<<endl;
+    return 0;
+} */
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int m;
+    cin >> m;
+    int k, l;
+    cin >> k >> l;
+    vector<int> arr(m);
+    int M = INT_MIN;
+    for(int i = 0; i < m; i++){
+        cin >> arr[i];
+        if(arr[i] > M) M = arr[i];
+    }
+    
+    vector<int> dp(M + 1, 0); // Default all to 0 (losing state)
+    
+    // Base cases (with bounds check to avoid runtime errors)
+    if (1 <= M) dp[1] = 1;
+    if (k <= M) dp[k] = 1;
+    if (l <= M) dp[l] = 1;
+
+    // FIX 1: Loop up to M (max coins), not m (number of test cases)
+    for(int i = 2; i <= M; i++){
+        if(i == 1 || i == k || i == l) continue;
+        dp[i] = !(dp[i-1] && ((i - k >= 1) ? dp[i-k] : 1) && ((i - l >= 1) ? dp[i-l] : 1));
+    }
+
+    // FIX 3: Check dp[arr[i]] instead of arr[i]
+    for(int i = 0; i < m; i++){
+        if(dp[arr[i]]) cout << 'A';
+        else cout << 'B';
+    }
+    cout << endl;
+    
     return 0;
 }
