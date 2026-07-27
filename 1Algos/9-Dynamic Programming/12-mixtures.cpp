@@ -26,5 +26,16 @@ int main(){
     vector<int> v(n);
     for(int i=0;i<n;i++) cin>>v[i];
     vector<vector<int>> dp1(n,vector<int>(n,-1));
-    cout<<f(0,n-1,v,dp1);
+    vector<vector<int>> dp2(n,vector<int>(n + 5,0));
+    for(int len = 2; len <= n; len++){
+        for(int i = 0; i <= n - len;i++){
+            int j = len + i -1;
+            dp2[i][j] = INT_MAX;
+            for(int k = i; k < j; k++){
+                dp2[i][j] = min(dp2[i][j], dp2[i][k] + dp2[k+1][j] + g(i,k,v) * g(k+1,j,v));
+            }
+        }
+    }
+    cout<<f(0,n-1,v,dp1)<<"\n";
+    cout<<dp2[0][n-1];
 }
