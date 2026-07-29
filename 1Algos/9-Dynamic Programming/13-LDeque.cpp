@@ -13,5 +13,18 @@ int main(){
     vector<int> v(n);
     for(int i = 0; i < n; i++) cin>>v[i];
     dp.resize(n,vector<int>(n,-1));
-    cout<<f(0,n-1,v);
+    dp.clear();
+    int dp2[n][n] = {{0}};
+    // Base case
+    for(int i = 0; i < n; i++){
+        dp2[i][i] = v[i];
+    }
+    for(int len = 2; len <= n; len++){
+        for(int i = 0; i <= n - len; i++){
+            int j = len + i - 1;  //(length of subarray using sliding window)
+            dp2[i][j] = max(v[i] - dp2[i+1][j], v[j] - dp2[i][j-1]);
+        }
+    }
+    cout<<f(0,n-1,v)<<endl;
+    cout<<dp2[0][n-1];
 }
