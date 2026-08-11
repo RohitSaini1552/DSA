@@ -1,3 +1,6 @@
+// Write code ofor implementing graph using adj list
+
+
 #include<bits/stdc++.h>
 using namespace std;
 vector<list<int>> graph;
