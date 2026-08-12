@@ -34,6 +34,22 @@ void allPath(int src, int dest, string &path){
     visited.erase(src);
 }
 
+void all_path(int src,int dest,string path){
+    if(src == dest){
+        path += to_string(src);
+        ans1.push_back(path);
+        path.pop_back();
+    }
+    visited.insert(src);
+    string ch = to_string(src);
+    for(auto &x : graph[src]){
+        if(!visited.count(x)){
+            all_path(x,dest,path+ch+"->");
+        }
+    }
+    visited.erase(src);
+}
+
 
 int main(){  
     int v;
@@ -50,6 +66,11 @@ int main(){
     string path = "";
     allPath(start,end,path);
     for(auto &x : ans1){
+        cout<<x<<endl;
+    }
+    visited.clear();
+    all_path(start,end,"");
+    for(auto &x : ans2){
         cout<<x<<endl;
     }
     
